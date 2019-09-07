@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/TileMap.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/DirtableMaze.gd" type="Script" id=2]
+
+[node name="DirtableMaze" index="0" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="DirtyTime" type="Timer" parent="." index="0"]
+wait_time = 2.0
+[connection signal="timeout" from="DirtyTime" to="." method="_on_DirtyTime_timeout"]
