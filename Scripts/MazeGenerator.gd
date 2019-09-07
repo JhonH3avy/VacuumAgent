@@ -13,15 +13,17 @@ var neightboors = []
 var walls = []
 var spaces = []
 
+export(NodePath) var timer;
+
 func _ready():
+	timer = get_node(timer)
 	randomize()
 	var initial_cell = generate_initial_cell()
 	add_to_maze(initial_cell)
 	emit_signal("start_position_generated", initial_cell)	
 	neightboors = get_neigtboor_walls(initial_cell)
 	generate_maze()
-	emit_signal("maze_generation_completed")	
-	
+	timer.start()
 	
 
 
@@ -101,3 +103,6 @@ func is_wall(cell)->bool:
 		if visited_cell.x == cell.x and visited_cell.y == cell.y:
 			return false
 	return true
+
+func _on_Timer_timeout():
+	print("hi")
